@@ -1,12 +1,8 @@
 name: dc-config
 
 on:
-  #run on push
-  push:
-    branches: [main]
-  
-  #run manually
   workflow_dispatch:
+  
 
 jobs:
   deploy_and_run:
