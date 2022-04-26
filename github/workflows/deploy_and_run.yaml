@@ -1,0 +1,25 @@
+name: dc-config
+
+on:
+  #run on push
+  #push:
+  #  branches: [main]
+  
+  #run manually
+  workflow_dispatch:
+
+jobs:
+  deploy_and_run:
+    runs-on: ubuntu-20.04
+
+    steps:
+    - name: Run on Digital Ocean Droplet via SSH
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.SSH_HOST}}
+        username: ${{ secrets.SSH_USER }}
+        passphrase: ${{ secrets.SSH_PASSPHRASE }}
+        key: ${{ secrets.SSH_KEY}}
+        script: |
+          docker-compose stop
+          docker-compose start
