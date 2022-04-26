@@ -2,8 +2,8 @@ name: dc-config
 
 on:
   #run on push
-  #push:
-  #  branches: [main]
+  push:
+    branches: [main]
   
   #run manually
   workflow_dispatch:
