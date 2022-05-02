@@ -26,6 +26,7 @@ services:
         - "traefik.enable=true"
         - "traefik.http.routers.rabbitmq.rule=Host(`cyber-city.systems`)"
         - "traefik.http.routers.rabbitmq.entrypoints=rabbitmqentry"
+        - "traefik.http.routers.rabbitmq.loadbalancer.server.port=15672"
       volumes:
         - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
         - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
