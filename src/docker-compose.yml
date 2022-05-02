@@ -6,28 +6,39 @@ services:
     image: "traefik:v2.6"
     container_name: "traefik"
     command:
-    - "--log.level=DEBUG"
-    - "--api.insecure=true"
-    - "--providers.docker=true"
-    - "--providers.docker.exposedbydefault=false"
-    - "--entrypoints.web.address=:80"
-    - "--entrypoints.rabbitmqentry.address=:15672"
+      - "--log.level=DEBUG"
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web.address=:80"
+      - "--entrypoints.rabbitmqentry.address=:15672"
     ports:
       - "80:80"
       - "8080:8080"
       - "15672:15672"
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
-  
+
+  rabbitmq:
+      image: "rabbitmq:3-management-alpine"
+      container_name: "rabbitmq"
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.rabbitmq.rule=Host(`localhost`)"
+        - "traefik.http.routers.rabbitmq.entrypoints=rabbitmqentry"
+      volumes:
+        - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
+        - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
+
   # kultur:
   #   image: "cybercity-kultur:latest"
-    
+
   #   container_name: "cybercity-kultur"
   #   labels:
   #     - "traefik.enable=true"
   #     - "traefik.http.routers.kultur.rule=Host(`kultur.cyber-city.systems`)"
   #     - "traefik.http.routers.kultur.entrypoints=web"
-  
+
   # landingpage:
   #   image: "cybercity-landingpage:latest"
   #   labels:
@@ -41,7 +52,7 @@ services:
   #     - "traefik.enable=true"
   #     - "traefik.http.routers.verkehr.rule=Host(`kultur.cyber-city.systems`)"
   #     - "traefik.http.routers.verkehr.entrypoints=web"
-  
+
   # gesundheitswesen:
   #   image: "cybercity-gesundheitswesen:latest"
   #   labels:
@@ -55,7 +66,7 @@ services:
   #     - "traefik.enable=true"
   #     - "traefik.http.routers.umwelt.rule=Host(`umwelt.cyber-city.systems`)"
   #     - "traefik.http.routers.umwelt.entrypoints=web"
-  
+
   # unternehmensregister:
   #   image: "cybercity-unternehmensregister:latest"
   #   labels:
@@ -69,44 +80,26 @@ services:
   #     - "traefik.enable=true"
   #     - "traefik.http.routers.authentifikation.rule=Host(`authentifikation.cyber-city.systems`)"
   #     - "traefik.http.routers.authentifikation.entrypoints=web"
-  
+
   ##rabbitmq
+    
+  # rabbitmq:
+  #   image: rabbitmq:3-management-alpine
+  #   container_name: 'rabbitmq'
+  #   labels:
+  #     - "traefik.enable=true"
+  #     - "traefik.http.routers.rabbitmq.rule=Host(`whoami.localhost`)"
+  #     - "traefik.http.routers.rabbitmq.entrypoints=rabbitmqentry"
+    # volumes:
+    #   - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
+    #   - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
   
-  rabbitmq:
-    image: rabbitmq:3-management-alpine
-    container_name: 'rabbitmq'
-    # expose: 
-    #   - "5672:5672"
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.rabbitmq.rule=Host(`cyber-city.systems`)"
-      - "traefik.http.routers.rabbitmq.entrypoints=rabbitmqentry"
-    volumes:
-        - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
-        - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
+  # whoami:
+  #   image: "traefik/whoami"
+  #   container_name: "simple-service"
+  #   labels:
+  #     - "traefik.enable=true"
+  #     - "traefik.http.routers.whoami.rule=Host(`whoami.localhost`)"
+  #     - "traefik.http.routers.whoami.entrypoints=rabbitmqentry"
 
-  
-
-  ## db //TODO put with service in container
-  # ## EXAMPLE //TODO remove
-  # database:
-  #   image: mysql:5.7
-  #   container_name:  mysql-1
-  #   #provide inital db structure?
-  #   command: --init-file /data/application/init.sql
-  #   volumes:
-  #   #provide inital db structure?
-  #       - ./init.sql:/data/application/init.sql
-  #   environment:
-  #       MYSQL_ROOT_USER: root
-  #       MYSQL_ROOT_PASSWORD: secret
-  #       MYSQL_DATABASE: homestead
-  #       MYSQL_USER: root
-  #       MYSQL_PASSWORD: secret
-
-
-
-
-  
-  
   
