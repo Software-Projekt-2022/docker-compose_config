@@ -16,7 +16,7 @@ services:
       - "80:80"
       - "8080:8080"
     volumes:
-      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      - "/var/run/docker.sock:/~/var/run/docker.sock:ro"
 
   rabbitmq:
       image: "rabbitmq:3-management-alpine"
@@ -28,8 +28,8 @@ services:
       ports:
         - "15672:15672"
       volumes:
-        - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
-        - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
+        - ~/.docker-conf/rabbitmq/data/:/~/var/lib/rabbitmq/
+        - ~/.docker-conf/rabbitmq/log/:/~/var/log/rabbitmq
 
   # kultur:
   #   image: "cybercity-kultur:latest"
