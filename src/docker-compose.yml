@@ -27,7 +27,7 @@ services:
         - "traefik.http.routers.rabbitmq.rule=Host(`cyber-city.systems`)"
         - "traefik.http.routers.rabbitmq.entrypoints=rabbitmqentry"
         - "traefik.http.services.rabbitmq.loadbalancer.server.port=15672"
-        - "traefik.http.routers.rabbitmq.service=mq"
+        - "traefik.http.routers.rabbitmq.service=rabbitmq"
       volumes:
         - ~/rabbitmq/data/:/var/lib/rabbitmq/mnesia
         - ~/rabbitmq/log/:/var/log/rabbitmq/
