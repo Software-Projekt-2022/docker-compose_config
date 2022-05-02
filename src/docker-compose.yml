@@ -15,7 +15,6 @@ services:
     ports:
       - "80:80"
       - "8080:8080"
-      - "15672:15672"
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
 
@@ -26,7 +25,8 @@ services:
         - "traefik.enable=true"
         - "traefik.http.routers.rabbitmq.rule=Host(`cyber-city.systems`)"
         - "traefik.http.routers.rabbitmq.entrypoints=rabbitmqentry"
-        - "traefik.http.routers.rabbitmq.loadbalancer.server.port=15672"
+      ports:
+        - "15672:15672"
       volumes:
         - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
         - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
