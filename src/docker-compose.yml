@@ -19,7 +19,7 @@ services:
       - "/var/run/docker.sock:/~/var/run/docker.sock:ro"
 
   rabbitmq:
-      image: "rabbitmq:3-management-alpine"
+      image: "rabbitmq:3.9.16-management"
       container_name: "rabbitmq"
       labels:
         - "traefik.enable=true"
