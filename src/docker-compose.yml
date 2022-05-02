@@ -75,8 +75,8 @@ services:
   rabbitmq:
     image: rabbitmq:3-management-alpine
     container_name: 'rabbitmq'
-    expose: 
-      - "5672:5672"
+    # expose: 
+    #   - "5672:5672"
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.rabbitmq.rule=Host(`cyber-city.systems`)"
