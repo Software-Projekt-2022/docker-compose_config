@@ -24,7 +24,7 @@ services:
       container_name: "rabbitmq"
       labels:
         - "traefik.enable=true"
-        - "traefik.http.routers.rabbitmq.rule=Host(`localhost`)"
+        - "traefik.http.routers.rabbitmq.rule=Host(`cyber-city.systems`)"
         - "traefik.http.routers.rabbitmq.entrypoints=rabbitmqentry"
       volumes:
         - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
