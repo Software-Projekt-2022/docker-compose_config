@@ -79,8 +79,7 @@ services:
       - "5672:5672"
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.rabbitmq.rule=Host(`localhost `)"
-      # cyber-city.systems`)"
+      - "traefik.http.routers.rabbitmq.rule=Host(`cyber-city.systems`)"
       - "traefik.http.routers.rabbitmq.entrypoints=rabbitmqentry"
     volumes:
         - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
