@@ -14,17 +14,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: Deploy script
-        uses: burnett01/rsync-deployments@5.2
-        with:
-          switches: -azvr --delete
-          path: src/
-          remote_path: ~/
-          remote_host: ${{ secrets.SSH_HOST }}
-          remote_user: ${{ secrets.SSH_USER }}
-          remote_key: ${{ secrets.SSH_KEY}}
-          remote_key_pass: ${{ secrets.SSH_PASSPHRASE }}
-      - name: Run on Digital Ocean Droplet via SSH
+      - name: Stop docker-compose
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.SSH_HOST }}
@@ -32,4 +22,25 @@ jobs:
           passphrase: ${{ secrets.SSH_PASSPHRASE }}
           key: ${{ secrets.SSH_KEY}}
           script: |
+            cd ~/docker
+            docker-compose stop
+      - name: Deploy script
+        uses: burnett01/rsync-deployments@5.2
+        with:
+          switches: -azvr --delete
+          path: src/
+          remote_path: ~/docker
+          remote_host: ${{ secrets.SSH_HOST }}
+          remote_user: ${{ secrets.SSH_USER }}
+          remote_key: ${{ secrets.SSH_KEY}}
+          remote_key_pass: ${{ secrets.SSH_PASSPHRASE }}
+      - name: Start Docker
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          passphrase: ${{ secrets.SSH_PASSPHRASE }}
+          key: ${{ secrets.SSH_KEY}}
+          script: |
+            cd ~/docker
             docker-compose up
