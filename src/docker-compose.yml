@@ -86,13 +86,11 @@ services:
 
   
 
-  ## db //TODO
-  ## EXAMPLE
+  ## db //TODO put with service in container
+  ## EXAMPLE //TODO remove
   database:
     image: mysql:5.7
-    expose:
-        - "33061:3306"
-        
+    container_name:  mysql-1
     #provide inital db structure?
     command: --init-file /data/application/init.sql
     volumes:
@@ -105,10 +103,7 @@ services:
         MYSQL_USER: root
         MYSQL_PASSWORD: secret
 
-#//TODO Rabbitmq network example
-networks:
-  rabbitmq_go_net:
-    driver: bridge
+
 
 
   

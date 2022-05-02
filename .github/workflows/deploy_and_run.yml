@@ -4,7 +4,7 @@ on:
   #run on push
   #push:
   #  branches: [main]
-  
+
   #run manually
   workflow_dispatch:
 
@@ -13,14 +13,23 @@ jobs:
     runs-on: ubuntu-20.04
 
     steps:
-    - name: Run on Digital Ocean Droplet via SSH
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ secrets.SSH_HOST}}
-        username: ${{ secrets.SSH_USER }}
-        passphrase: ${{ secrets.SSH_PASSPHRASE }}
-        key: ${{ secrets.SSH_KEY}}
-        script: |
-          docker-compose stop
-          docker-compose start
-          
+      - uses: actions/checkout@v2
+      - name: Deploy script
+        uses: burnett01/rsync-deployments@5.2
+        with:
+          switches: -azvr --delete
+          path: src/
+          remote_path: ~/
+          remote_host: ${{ secrets.SSH_HOST }}
+          remote_user: ${{ secrets.SSH_USER }}
+          remote_key: ${{ secrets.SSH_KEY}}
+          remote_key_pass: ${{ secrets.SSH_PASSPHRASE }}
+      - name: Run on Digital Ocean Droplet via SSH
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          passphrase: ${{ secrets.SSH_PASSPHRASE }}
+          key: ${{ secrets.SSH_KEY}}
+          script: |
+            docker-compose up
