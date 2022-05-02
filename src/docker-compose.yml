@@ -28,8 +28,8 @@ services:
       ports:
         - "15672:15672"
       volumes:
-        - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
-        - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
+        - ~/rabbitmq/data/:/var/lib/rabbitmq/
+        - ~/rabbitmq/log/:/var/log/rabbitmq
 
   # kultur:
   #   image: "cybercity-kultur:latest"
