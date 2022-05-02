@@ -30,6 +30,7 @@ services:
       volumes:
         - ~/rabbitmq/data/:/var/lib/rabbitmq/
         - ~/rabbitmq/log/:/var/log/rabbitmq/
+        - ~/rabbitmq/r/:/var/lib/rabbitmq/mnesia
 
   # kultur:
   #   image: "cybercity-kultur:latest"
