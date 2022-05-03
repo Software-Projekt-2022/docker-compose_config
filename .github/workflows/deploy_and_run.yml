@@ -8,6 +8,9 @@ on:
   #run manually
   workflow_dispatch:
 
+env:
+  REGISTRY: "registry.digitalocean.com/cybercityregistry"
+
 jobs:
   deploy_and_run:
     runs-on: ubuntu-20.04
@@ -36,14 +39,12 @@ jobs:
           remote_key: ${{ secrets.SSH_KEY}}
           remote_key_pass: ${{ secrets.SSH_PASSPHRASE }}
       - name: Login to digitalocean registry
-        uses: appleboy/ssh-action@master
+        uses: docker/login-action@v1
         with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USER }}
-          passphrase: ${{ secrets.SSH_PASSPHRASE }}
-          key: ${{ secrets.SSH_KEY}}
-          script: |
-            docker login -u "${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}" -p "${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}" registry.digitalocean.com 
+          registry: $REGISTRY
+          username: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+          password: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+          logout: false
       - name: Start Docker
         uses: appleboy/ssh-action@master
         with:

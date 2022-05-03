@@ -20,11 +20,21 @@ services:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
 
   rabbitmq:
-      image: "rabbitmq-setup"
-      container_name: "rabbitmq-setup"
+      image: "rabbitmq:3-management"
+      container_name: "rabbitmq"
       labels:
         - "traefik.enable=true"
+        - "traefik.http.routers.rabbitmq.rule=Host(`cyber-city.systems`)"
+        - "traefik.http.routers.rabbitmq.entrypoints=rabbitmqentry"
+        - "traefik.http.services.rabbitmq.loadbalancer.server.port=15672"
+        - "traefik.http.routers.rabbitmq.service=rabbitmq"
+        - "traefik.docker.network=traefik_default"
+      volumes:
+        - ~/rabbitmq/data/:/var/lib/rabbitmq/mnesia
+        - ~/rabbitmq/log/:/var/log/rabbitmq/
   
+  rabbitmqsetup:
+    image: "rabbitmq-setup"
 
   # kultur:
   #   image: "cybercity-kultur:latest"
