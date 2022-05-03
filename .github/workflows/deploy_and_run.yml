@@ -41,7 +41,7 @@ jobs:
       - name: Login to digitalocean registry
         uses: docker/login-action@v1
         with:
-          registry: $REGISTRY
+          registry: registry.digitalocean.com/cybercityregistry
           username: ${{ secrets.DO_ACCESS }}
           password: ${{ secrets.DO_ACCESS }}
           logout: false
