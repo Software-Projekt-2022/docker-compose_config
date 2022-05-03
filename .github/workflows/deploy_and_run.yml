@@ -42,8 +42,8 @@ jobs:
         uses: docker/login-action@v1
         with:
           registry: $REGISTRY
-          username: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
-          password: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+          username: ${{ secrets.DO_ACCESS }}
+          password: ${{ secrets.DO_ACCESS }}
           logout: false
       - name: Start Docker
         uses: appleboy/ssh-action@master
