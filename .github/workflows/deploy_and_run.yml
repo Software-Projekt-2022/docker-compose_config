@@ -43,7 +43,7 @@ jobs:
           passphrase: ${{ secrets.SSH_PASSPHRASE }}
           key: ${{ secrets.SSH_KEY}}
           script: |
-            docker login -u ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }} -p ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }} registry.digitalocean.com 
+            docker login -u "${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}" -p "${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}" registry.digitalocean.com 
       - name: Start Docker
         uses: appleboy/ssh-action@master
         with:
