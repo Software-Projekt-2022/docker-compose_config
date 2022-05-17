@@ -35,6 +35,8 @@ services:
   
   rabbitmqsetup:
     image: "registry.digitalocean.com/cybercityregistry/rabbitmq-setup:latest"
+    depends_on:
+      - rabbitmq
 
   # kultur:
   #   image: "cybercity-kultur:latest"
