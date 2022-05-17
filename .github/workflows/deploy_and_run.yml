@@ -45,6 +45,16 @@ jobs:
           username: ${{ secrets.DO_ACCESS }}
           password: ${{ secrets.DO_ACCESS }}
           logout: false
+      - name: Pull docker images
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          passphrase: ${{ secrets.SSH_PASSPHRASE }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            docker pull registry.digitalocean.com/cybercityregistry/test:latest
+
       - name: Start Docker
         uses: appleboy/ssh-action@master
         with:
@@ -54,4 +64,4 @@ jobs:
           key: ${{ secrets.SSH_KEY}}
           script: |
             cd ~/docker
-            docker-compose up -d
+            docker-compose up -d --force-recreate
