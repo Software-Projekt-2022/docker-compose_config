@@ -39,22 +39,8 @@ jobs:
           remote_key: ${{ secrets.SSH_KEY}}
           remote_key_pass: ${{ secrets.SSH_PASSPHRASE }}
 
-      - name: Install doctl
-        uses: burnett01/rsync-deployments@5.2
-        with:
-          switches: -azvr --delete
-          path: src/
-          remote_path: ~/docker
-          remote_host: ${{ secrets.SSH_HOST }}
-          remote_user: ${{ secrets.SSH_USER }}
-          remote_key: ${{ secrets.SSH_KEY}}
-          remote_key_pass: ${{ secrets.SSH_PASSPHRASE }}
-      - name: Install doctl
-        uses: digitalocean/action-doctl@v2
-        with:
-          token: ${{ secrets.DO_ACCESS }}
-      - name: Log in to DigitalOcean Container Registry
-        run: doctl registry login 8
+  
+      
         
       - name: Start Docker
         uses: appleboy/ssh-action@master
