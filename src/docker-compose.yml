@@ -32,7 +32,7 @@ services:
       volumes:
         - ~/rabbitmq/data/:/var/lib/rabbitmq/mnesia
         - ~/rabbitmq/log/:/var/log/rabbitmq/
-        - ./rabbitmq.json:/etc/rabbitmq/definitions.json:ro 
+        - ./rabbitmq.json:/etc/rabbitmq/definitions.json
   
   # rabbitmqsetup:
   #   image: "registry.digitalocean.com/cybercityregistry/rabbitmq-setup:latest"
