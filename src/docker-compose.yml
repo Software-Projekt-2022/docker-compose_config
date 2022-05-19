@@ -33,6 +33,7 @@ services:
         - ~/rabbitmq/data/:/var/lib/rabbitmq/mnesia
         - ~/rabbitmq/log/:/var/log/rabbitmq/
         - ./rabbitmq.json:/etc/rabbitmq/definitions.json
+        - ./rabbitmq.config:/etc/rabbitmq/rabbitmq.config
   
   # rabbitmqsetup:
   #   image: "registry.digitalocean.com/cybercityregistry/rabbitmq-setup:latest"
