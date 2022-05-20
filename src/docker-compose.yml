@@ -67,7 +67,23 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.umwelt.rule=Host(`umwelt.cyber-city.systems`)"
       - "traefik.http.routers.umwelt.entrypoints=web"
+
+  verkehrdb:
+    image: mariadb
+    restart: always
+    environment:
+      MARIADB_ROOT_PASSWORD: verkehrpw12345
+      MARIADB_PASSWORD: verkehrpw12345
+      MARIADB_USER: verkehr
+    
+  verkehr:
+    image: "cybercity-verkehr:latest"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.verkehr.rule=Host(`kultur.cyber-city.systems`)"
+      - "traefik.http.routers.verkehr.entrypoints=web"
   
+
   # rabbitmqsetup:
   #   image: "registry.digitalocean.com/cybercityregistry/rabbitmq-setup:latest"
   #   depends_on:
@@ -89,15 +105,6 @@ services:
   #     - "traefik.http.routers.landingpage.rule=Host(`cyber-city.systems`)"
   #     - "traefik.http.routers.landingpage.entrypoints=web"
 
-  # verkehr:
-  #   image: "cybercity-verkehr:latest"
-  #   labels:
-  #     - "traefik.enable=true"
-  #     - "traefik.http.routers.verkehr.rule=Host(`kultur.cyber-city.systems`)"
-  #     - "traefik.http.routers.verkehr.entrypoints=web"
-
- 
-
 
 
   # unternehmensregister:
@@ -106,28 +113,5 @@ services:
   #     - "traefik.enable=true"
   #     - "traefik.http.routers.unternehmensregister.rule=Host(`unternehmensregister.cyber-city.systems`)"
   #     - "traefik.http.routers.unternehmensregister.entrypoints=web"
-
-  
-
-  ##rabbitmq
-    
-  # rabbitmq:
-  #   image: rabbitmq:3-management-alpine
-  #   container_name: 'rabbitmq'
-  #   labels:
-  #     - "traefik.enable=true"
-  #     - "traefik.http.routers.rabbitmq.rule=Host(`whoami.localhost`)"
-  #     - "traefik.http.routers.rabbitmq.entrypoints=rabbitmqentry"
-    # volumes:
-    #   - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
-    #   - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
-  
-  # whoami:
-  #   image: "traefik/whoami"
-  #   container_name: "simple-service"
-  #   labels:
-  #     - "traefik.enable=true"
-  #     - "traefik.http.routers.whoami.rule=Host(`whoami.localhost`)"
-  #     - "traefik.http.routers.whoami.entrypoints=rabbitmqentry"
 
   
