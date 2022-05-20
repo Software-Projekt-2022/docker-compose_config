@@ -80,7 +80,7 @@ services:
     image: "registry.digitalocean.com/cybercityregistry/verkehr:latest"
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.verkehr.rule=Host(`kultur.cyber-city.systems`)"
+      - "traefik.http.routers.verkehr.rule=Host(`verkehr.cyber-city.systems`)"
       - "traefik.http.routers.verkehr.entrypoints=web"
   
 
