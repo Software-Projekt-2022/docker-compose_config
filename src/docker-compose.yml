@@ -61,6 +61,13 @@ services:
     labels:
     - "traefik.enable=false"
 
+  umwelt:
+    image: "cybercity-umwelt:latest"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.umwelt.rule=Host(`umwelt.cyber-city.systems`)"
+      - "traefik.http.routers.umwelt.entrypoints=web"
+  
   # rabbitmqsetup:
   #   image: "registry.digitalocean.com/cybercityregistry/rabbitmq-setup:latest"
   #   depends_on:
@@ -91,12 +98,7 @@ services:
 
  
 
-  # umwelt:
-  #   image: "cybercity-umwelt:latest"
-  #   labels:
-  #     - "traefik.enable=true"
-  #     - "traefik.http.routers.umwelt.rule=Host(`umwelt.cyber-city.systems`)"
-  #     - "traefik.http.routers.umwelt.entrypoints=web"
+
 
   # unternehmensregister:
   #   image: "cybercity-unternehmensregister:latest"
