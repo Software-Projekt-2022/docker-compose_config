@@ -62,7 +62,7 @@ services:
     - "traefik.enable=false"
 
   umwelt:
-    image: "cybercity-umwelt:latest"
+    image: "registry.digitalocean.com/cybercityregistry/cybercity-umwelt:latest"
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.umwelt.rule=Host(`umwelt.cyber-city.systems`)"
