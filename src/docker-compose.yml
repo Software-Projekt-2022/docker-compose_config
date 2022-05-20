@@ -49,6 +49,18 @@ services:
       POSTGRES_PASSWORD: authdbpw1234
       POSTGRES_USER: auth
 
+  gesundheitswesen_fr:
+    image: "registry.digitalocean.com/cybercityregistry/gesundheitswesen_frontend:latest"
+    labels:
+    - "traefik.enable=true"
+    - "traefik.http.routers.gesundheitswesen.rule=Host(`gesundheitswesen.cyber-city.systems`)"
+    - "traefik.http.routers.gesundheitswesen.entrypoints=web"
+
+  gesundheitswesen_ba:
+    image: "registry.digitalocean.com/cybercityregistry/gesundheitswesen_backend:latest"
+    labels:
+    - "traefik.enable=false"
+
   # rabbitmqsetup:
   #   image: "registry.digitalocean.com/cybercityregistry/rabbitmq-setup:latest"
   #   depends_on:
@@ -77,12 +89,7 @@ services:
   #     - "traefik.http.routers.verkehr.rule=Host(`kultur.cyber-city.systems`)"
   #     - "traefik.http.routers.verkehr.entrypoints=web"
 
-  # gesundheitswesen:
-  #   image: "cybercity-gesundheitswesen:latest"
-  #   labels:
-  #     - "traefik.enable=true"
-  #     - "traefik.http.routers.gesundheitswesen.rule=Host(`gesundheitswesen.cyber-city.systems`)"
-  #     - "traefik.http.routers.gesundheitswesen.entrypoints=web"
+ 
 
   # umwelt:
   #   image: "cybercity-umwelt:latest"
