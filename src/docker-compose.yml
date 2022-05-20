@@ -77,7 +77,7 @@ services:
       MARIADB_USER: verkehr
     
   verkehr:
-    image: "cybercity-verkehr:latest"
+    image: "registry.digitalocean.com/cybercityregistry/verkehr:latest"
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.verkehr.rule=Host(`kultur.cyber-city.systems`)"
