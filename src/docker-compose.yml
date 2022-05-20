@@ -35,6 +35,20 @@ services:
         - ./rabbitmq.json:/etc/rabbitmq/definitions.json
         - ./rabbitmq.config:/etc/rabbitmq/rabbitmq.config
   
+  authentifikation:
+    image: "registry.digitalocean.com/cybercityregistry/authentifizierung:latest"
+    labels:
+    - "traefik.enable=true"
+    - "traefik.http.routers.authentifikation.rule=Host(`auth.cyber-city.systems`)"
+    - "traefik.http.routers.authentifikation.entrypoints=web"
+
+  authdb:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: authdbpw1234
+      POSTGRES_USER: auth
+
   # rabbitmqsetup:
   #   image: "registry.digitalocean.com/cybercityregistry/rabbitmq-setup:latest"
   #   depends_on:
@@ -84,12 +98,7 @@ services:
   #     - "traefik.http.routers.unternehmensregister.rule=Host(`unternehmensregister.cyber-city.systems`)"
   #     - "traefik.http.routers.unternehmensregister.entrypoints=web"
 
-  # authentifikation:
-  #   image: "cybercity-authentifikation:latest"
-  #   labels:
-  #     - "traefik.enable=true"
-  #     - "traefik.http.routers.authentifikation.rule=Host(`authentifikation.cyber-city.systems`)"
-  #     - "traefik.http.routers.authentifikation.entrypoints=web"
+  
 
   ##rabbitmq
     
