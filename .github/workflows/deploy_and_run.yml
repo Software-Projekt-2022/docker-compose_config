@@ -48,4 +48,5 @@ jobs:
           key: ${{ secrets.SSH_KEY}}
           script: |
             cd ~/docker
+            docker-compose pull
             docker-compose up -d --force-recreate
