@@ -32,8 +32,8 @@ services:
       volumes:
         - ~/rabbitmq/data/:/var/lib/rabbitmq/mnesia
         - ~/rabbitmq/log/:/var/log/rabbitmq/
-        - ./rabbitmq.json:/etc/rabbitmq/definitions.json
-        - ./rabbitmq.config:/etc/rabbitmq/rabbitmq.config
+        - ~/rabbitmqsetup/rabbitmq.json:/etc/rabbitmq/definitions.json
+        - ~/rabbitmqsetup/rabbitmq.config:/etc/rabbitmq/rabbitmq.config
   
   authentifikation:
     image: "registry.digitalocean.com/cybercityregistry/authentifizierung:latest"
