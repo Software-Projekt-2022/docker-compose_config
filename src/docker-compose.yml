@@ -53,8 +53,8 @@ services:
     image: "registry.digitalocean.com/cybercityregistry/gesundheitswesen_frontend:latest"
     labels:
     - "traefik.enable=true"
-    - "traefik.http.routers.gesundheitswesen.rule=Host(`gesundheitswesen.cyber-city.systems`)"
-    - "traefik.http.routers.gesundheitswesen.entrypoints=web"
+    - "traefik.http.routers.gesundheitswesen_fr.rule=Host(`gesundheitswesen.cyber-city.systems`)"
+    - "traefik.http.routers.gesundheitswesen_fr.entrypoints=web"
 
   gesundheitswesen_ba:
     image: "registry.digitalocean.com/cybercityregistry/gesundheitswesen_backend:latest"
