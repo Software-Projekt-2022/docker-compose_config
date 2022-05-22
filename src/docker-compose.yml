@@ -77,6 +77,8 @@ services:
       MARIADB_USER: verkehr
     
   verkehr:
+    depends_on: 
+      - verkehrdb
     image: "registry.digitalocean.com/cybercityregistry/verkehr:latest"
     labels:
       - "traefik.enable=true"
