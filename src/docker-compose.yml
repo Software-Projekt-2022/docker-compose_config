@@ -71,6 +71,10 @@ services:
   verkehrdb:
     image: mariadb
     restart: always
+    command: --init-file ~/verkehr/init/init.sql
+    volumes:
+        - ~/verkehr/init/init.sql:/data/application/init.sql
+        - ~/verkehr:/var/lib/mysql
     environment:
       MARIADB_ROOT_PASSWORD: verkehrpw12345
       MARIADB_PASSWORD: verkehrpw12345
