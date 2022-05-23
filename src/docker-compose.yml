@@ -105,6 +105,22 @@ services:
       - ~/unternehmendbinit/init.sql:/docker-entrypoint-initdb.d/init.sql
       - ~/unternehmendb:/var/lib/postgresql/data
 
+  landingpage_fr:
+     image: "registry.digitalocean.com/cybercityregistry/landingpage_fr:latest"
+     depends_on: 
+       - landingpage_ba
+     labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.landingpage.rule=Host(`cyber-city.systems`)"
+      - "traefik.http.routers.landingpage.entrypoints=web"
+
+  landingpage_ba:
+     image: "registry.digitalocean.com/cybercityregistry/landingpage_ba:latest"
+     labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.landingpage.rule=Host(`cyber-city.systems`)"
+      - "traefik.http.routers.landingpage.entrypoints=web"
+
   # kultur:
   #   image: "cybercity-kultur:latest"
 
@@ -114,12 +130,7 @@ services:
   #     - "traefik.http.routers.kultur.rule=Host(`kultur.cyber-city.systems`)"
   #     - "traefik.http.routers.kultur.entrypoints=web"
 
-  # landingpage:
-  #   image: "cybercity-landingpage:latest"
-  #   labels:
-  #     - "traefik.enable=true"
-  #     - "traefik.http.routers.landingpage.rule=Host(`cyber-city.systems`)"
-  #     - "traefik.http.routers.landingpage.entrypoints=web"
+
 
 
 
