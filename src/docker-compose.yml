@@ -103,7 +103,7 @@ services:
       POSTGRES_USER: cjadmin
     volumes:
       - ~/unternehmendbinit/init.sql:/docker-entrypoint-initdb.d/init.sql
-      - ~/verkehr:/var/lib/postgresql/data
+      - ~/unternehmendb:/var/lib/postgresql/data
 
   # kultur:
   #   image: "cybercity-kultur:latest"
