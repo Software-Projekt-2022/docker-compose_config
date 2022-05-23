@@ -95,6 +95,16 @@ services:
     depends_on:
       - rabbitmq
 
+  unternehmendb:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: cc_cj#&#2022
+      POSTGRES_USER: cjadmin
+    volumes:
+      - ~/unternehmendbinit/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ~/verkehr:/var/lib/postgresql/data
+
   # kultur:
   #   image: "cybercity-kultur:latest"
 
