@@ -117,9 +117,7 @@ services:
   landingpage_ba:
      image: "registry.digitalocean.com/cybercityregistry/landingpage_ba:latest"
      labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.landingpage.rule=Host(`cyber-city.systems`)"
-      - "traefik.http.routers.landingpage.entrypoints=web"
+      - "traefik.enable=false"
 
   # kultur:
   #   image: "cybercity-kultur:latest"
