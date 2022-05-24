@@ -138,10 +138,8 @@ services:
       POSTGRES_PASSWORD: kulturdbpw12345
       POSTGRES_USER: kulturdbuser
     volumes:
-      - ~/kulturdb/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ~/kulturdbinit/init.sql:/docker-entrypoint-initdb.d/init.sql
       - ~/kulturdb:/var/lib/postgresql/data
-
-
 
   # unternehmensregister:
   #   image: "cybercity-unternehmensregister:latest"
