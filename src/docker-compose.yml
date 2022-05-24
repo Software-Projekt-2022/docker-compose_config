@@ -141,6 +141,13 @@ services:
       - ~/kulturdbinit/init.sql:/docker-entrypoint-initdb.d/init.sql
       - ~/kulturdb:/var/lib/postgresql/data
 
+  gesunddb:
+    image: mongo
+    restart: always
+    command: mongod --port 7777
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
   # unternehmensregister:
   #   image: "cybercity-unternehmensregister:latest"
   #   labels:
