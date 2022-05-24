@@ -50,14 +50,14 @@ services:
       POSTGRES_USER: auth
 
   gesundheitswesen_fr:
-    image: "registry.digitalocean.com/cybercityregistry/gesundheitswesen_frontend:latest"
+    image: "registry.digitalocean.com/cybercityregistry/gesundheitswesen_fr:latest"
     labels:
     - "traefik.enable=true"
     - "traefik.http.routers.gesundheitswesen_fr.rule=Host(`gesundheitswesen.cyber-city.systems`)"
     - "traefik.http.routers.gesundheitswesen_fr.entrypoints=web"
 
   gesundheitswesen_ba:
-    image: "registry.digitalocean.com/cybercityregistry/gesundheitswesen_backend:latest"
+    image: "registry.digitalocean.com/cybercityregistry/gesundheitswesen_ba:latest"
     labels:
     - "traefik.enable=false"
 
@@ -149,6 +149,7 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: example
+  
   # unternehmensregister:
   #   image: "cybercity-unternehmensregister:latest"
   #   labels:
