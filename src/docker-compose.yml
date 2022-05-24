@@ -150,11 +150,14 @@ services:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: example
   
-  # unternehmensregister:
-  #   image: "cybercity-unternehmensregister:latest"
+  # unternehmensregister_fr:
+  #   image: "registry.digitalocean.com/cybercityregistry/unternehmensregister_fr:latest"
   #   labels:
   #     - "traefik.enable=true"
   #     - "traefik.http.routers.unternehmensregister.rule=Host(`unternehmensregister.cyber-city.systems`)"
   #     - "traefik.http.routers.unternehmensregister.entrypoints=web"
 
-  
+  unternehmensregister_ba:
+    image: "registry.digitalocean.com/cybercityregistry/unternehmensregister_ba:latest"
+    labels:
+      - "traefik.enable=false"
