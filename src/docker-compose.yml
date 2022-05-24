@@ -130,8 +130,16 @@ services:
     image: "registry.digitalocean.com/cybercityregistry/kultur_ba:latest"
     labels:
       - "traefik.enable=false"
-
-
+  
+  kulturdb:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: kulturdbpw12345
+      POSTGRES_USER: kulturdbuser
+    volumes:
+      - ~/kulturdb/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ~/kulturdb:/var/lib/postgresql/data
 
 
 
