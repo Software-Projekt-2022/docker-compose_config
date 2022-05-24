@@ -119,14 +119,17 @@ services:
      labels:
       - "traefik.enable=false"
 
-  # kultur:
-  #   image: "cybercity-kultur:latest"
+  kultur_fr:
+    image: "registry.digitalocean.com/cybercityregistry/kultur_fr:latest"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.kultur.rule=Host(`kultur.cyber-city.systems`)"
+      - "traefik.http.routers.kultur.entrypoints=web"
 
-  #   container_name: "cybercity-kultur"
-  #   labels:
-  #     - "traefik.enable=true"
-  #     - "traefik.http.routers.kultur.rule=Host(`kultur.cyber-city.systems`)"
-  #     - "traefik.http.routers.kultur.entrypoints=web"
+  kultur_ba:
+    image: "registry.digitalocean.com/cybercityregistry/kultur_ba:latest"
+    labels:
+      - "traefik.enable=false"
 
 
 
