@@ -30,7 +30,7 @@ services:
       - traefik.http.routers.to-https.middlewares=to-https
 
       - traefik.http.routers.traefik.rule=Host(`traefik.cyber-city.systems`)
-      - traefik.http.routers.traefik.entrypoints=https
+      - traefik.http.routers.traefik.entrypoints=http
       - traefik.http.routers.traefik.service=api@internal
 
       - traefik.http.routers.traefik.tls=true
@@ -185,12 +185,12 @@ services:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: example
   
-  # unternehmensregister_fr:
-  #   image: "registry.digitalocean.com/cybercityregistry/unternehmensregister_fr:latest"
-  #   labels:
-  #     - "traefik.enable=true"
-  #     - "traefik.http.routers.unternehmensregister.rule=Host(`unternehmensregister.cyber-city.systems`)"
-  #     - "traefik.http.routers.unternehmensregister.entrypoints=http"
+  unternehmensregister_fr:
+    image: "registry.digitalocean.com/cybercityregistry/unternehmensregister_fr:latest"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.unternehmensregister.rule=Host(`unternehmensregister.cyber-city.systems`)"
+      - "traefik.http.routers.unternehmensregister.entrypoints=http"
 
   unternehmensregister_ba:
     image: "registry.digitalocean.com/cybercityregistry/unternehmensregister_ba:latest"
