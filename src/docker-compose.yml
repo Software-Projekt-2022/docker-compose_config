@@ -34,7 +34,7 @@ services:
       - traefik.http.routers.traefik.service=api@internal
 
       - traefik.http.routers.traefik.tls=true
-      - traefik.http.routers.traefik.tls.certresolver=letsencrypt
+      - traefik.http.routers.traefik.tls.certResolver=letsencrypt
 
       - traefik.http.middlewares.to-https.redirectscheme.scheme=https
 
@@ -52,7 +52,7 @@ services:
       - traefik.http.routers.https.rule=Host(`whoami.cyber-city.systems`)
       - traefik.http.routers.https.entrypoints=https
       - traefik.http.routers.https.tls=true
-      - traefik.http.routers.https.tls.certresolver=letsencrypt
+      - traefik.http.routers.https.tls.certResolver=letsencrypt
 
   rabbitmq:
       image: "rabbitmq:3-management"
