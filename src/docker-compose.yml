@@ -76,6 +76,9 @@ services:
     - "traefik.enable=true"
     - "traefik.http.routers.authentifizierung.rule=Host(`auth.cyber-city.systems`)"
     - "traefik.http.routers.authentifizierung.entrypoints=http"
+    volumes:
+      - ~/authkeys/id_rsa.pem:/Authentification/id_rsa.pem
+      - ~/authkeys/id_rsa_pub.pem:/Authentification/id_rsa_pub.pem
 
   authdb:
     image: mariadb
