@@ -70,19 +70,24 @@ services:
         - ~/rabbitmqsetup/rabbitmq.json:/etc/rabbitmq/definitions.json
         - ~/rabbitmqsetup/rabbitmq.config:/etc/rabbitmq/rabbitmq.config
   
-  authentifikation:
+  authentifizierung:
     image: "registry.digitalocean.com/cybercityregistry/authentifizierung:latest"
     labels:
     - "traefik.enable=true"
-    - "traefik.http.routers.authentifikation.rule=Host(`auth.cyber-city.systems`)"
-    - "traefik.http.routers.authentifikation.entrypoints=http"
+    - "traefik.http.routers.authentifizierung.rule=Host(`auth.cyber-city.systems`)"
+    - "traefik.http.routers.authentifizierung.entrypoints=http"
 
   authdb:
-    image: postgres
+    image: mariadb
     restart: always
+    volumes:
+        - ~/authdbinit/init.sql:/docker-entrypoint-initdb.d/init.sql
+        - ~/authdb:/var/lib/mysql
     environment:
-      POSTGRES_PASSWORD: authdbpw1234
-      POSTGRES_USER: auth
+      MARIADB_ROOT_PASSWORD: authdbpw1234
+      MARIADB_PASSWORD: authdbpw1234
+      MARIADB_USER: auth
+      MARIADB_DATABASE: auth
 
   gesundheitswesen_fr:
     image: "registry.digitalocean.com/cybercityregistry/gesundheitswesen_fr:latest"
