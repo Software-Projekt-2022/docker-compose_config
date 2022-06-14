@@ -6,7 +6,7 @@ services:
     image: "traefik:v2.6"
     container_name: "traefik"
     command:
-      - "--api=true"
+      #- "--api=true"
       - "--log.level=DEBUG"
       - "--api.insecure=true"
       - "--providers.docker=true"
@@ -16,10 +16,10 @@ services:
       - "--entrypoints.rabbitmqentry.address=:15672"
       - "--entrypoints.https.address=:443"
       #- "--certificatesresolvers.letsencrypt.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory"
-      - "--certificatesresolvers.le.acme.email=lstuempeley@fh-bielefeld.de"
-      - "--certificatesresolvers.le.acme.storage=/acme.json"
-      - "--certificatesresolvers.le.acme.tlschallange=true"
-      - "--certificatesresolvers.le.acme.dnschallenge.providers=namedotcom"
+      #- "--certificatesresolvers.le.acme.email=lstuempeley@fh-bielefeld.de"
+      #- "--certificatesresolvers.le.acme.storage=/acme.json"
+      #- "--certificatesresolvers.le.acme.tlschallange=true"
+      #- "--certificatesresolvers.le.acme.dnschallenge.providers=namedotcom"
     
     environment:
       - "NAMECOM_USERNAME=leonstue"
@@ -37,10 +37,10 @@ services:
   whoami:
     image: containous/whoami
     labels:
-        - "traefik.enable=true"
-        - "traefik.http.routers.whoami.rule=Host(`whoami.cyber-city.systems`)" # URL
-        - "traefik.http.routers.whoami.tls.certresolver=le" # Cert resolver declared as traefik flag
-        - "traefik.http.routers.whoami.entrypoints=https" # Incoming entrypoint
+      - traefik.http.routers.https.rule=Host(`whoami.cyber-city.systems`)
+      - traefik.http.routers.https.entrypoints=https
+      - traefik.http.routers.https.tls=true
+      - traefik.http.routers.https.tls.certResolver=letsencrypt
 
   rabbitmq:
       image: "rabbitmq:3-management"
