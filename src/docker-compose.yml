@@ -37,10 +37,10 @@ services:
   whoami:
     image: containous/whoami
     labels:
-      - traefik.http.routers.https.rule=Host(`whoami.cyber-city.systems`)
-      - traefik.http.routers.https.entrypoints=https
-      - traefik.http.routers.https.tls=true
-      - traefik.http.routers.https.tls.certResolver=letsencrypt
+        - "traefik.enable=true"
+        - "traefik.http.routers.whoami.rule=Host(`whoami.cyber-city.systems`)" # URL
+        - "traefik.http.routers.whoami.tls.certresolver=le" # Cert resolver declared as traefik flag
+        - "traefik.http.routers.whoami.entrypoints=https" # Incoming entrypoint
 
   rabbitmq:
       image: "rabbitmq:3-management"
