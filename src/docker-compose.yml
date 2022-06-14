@@ -6,6 +6,7 @@ services:
     image: "traefik:v2.6"
     container_name: "traefik"
     command:
+      - "--api=true"
       - "--log.level=DEBUG"
       - "--api.insecure=true"
       - "--providers.docker=true"
@@ -15,7 +16,15 @@ services:
       - "--entrypoints.rabbitmqentry.address=:15672"
       - "--entrypoints.https.address=:443"
       #- "--certificatesresolvers.letsencrypt.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory"
-
+      - "--certificatesresolvers.le.acme.email=lstuempeley@fh-bielefeld.de"
+      - "--certificatesresolvers.le.acme.storage=/acme.json"
+      - "--certificatesresolvers.le.acme.tlschallange=true"
+      - "--certificatesresolvers.le.acme.dnschallenge.providers=namedotcom"
+    
+    environment:
+      - "NAMECOM_USERNAME=leonstue"
+      - "NAMECOM_API_TOKEN=144a4a06be34f25e28d8c1786440e9e6fe2f6743"
+      - "NAMECOM_SERVER=api.name.com"
     ports:
       - "8080:8080"
       - "80:80"
@@ -23,6 +32,7 @@ services:
       - "443:443"
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      - "~/cert/acme.json:/acme.json"
 
   whoami:
     image: containous/whoami
