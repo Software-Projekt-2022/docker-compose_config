@@ -90,7 +90,9 @@ services:
   gesundheitswesen_ba:
     image: "registry.digitalocean.com/cybercityregistry/gesundheitswesen_ba:latest"
     labels:
-    - "traefik.enable=false"
+    - "traefik.enable=true"
+    - "traefik.http.routers.gesundheitswesen_fr.rule=Host(`ba.gesundheitswesen.cyber-city.systems`)"
+    - "traefik.http.routers.gesundheitswesen_fr.entrypoints=http"
 
   umwelt:
     image: "registry.digitalocean.com/cybercityregistry/umwelt:latest"
