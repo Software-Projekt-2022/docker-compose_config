@@ -37,7 +37,7 @@ services:
     image: containous/whoami
     labels:
       - "traefik.enable=true"
-      - traefik.http.routers.whoami.rule=Host(`whoami.cyber-city.systems`)
+      - traefik.http.routers.whoami.rule=Host(`whoami.cyber-city.systems`) && Path(`/api`)
       - traefik.http.routers.whoami.entrypoints=https
       - traefik.http.routers.whoami.tls.certresolver=le
 
