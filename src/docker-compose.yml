@@ -61,7 +61,8 @@ services:
     labels:
     - "traefik.enable=true"
     - "traefik.http.routers.authentifizierung.rule=Host(`auth.cyber-city.systems`)"
-    - "traefik.http.routers.authentifizierung.entrypoints=http"
+    - "traefik.http.routers.authentifizierung.entrypoints=https"
+    - "traefik.http.routers.authentifizierung.tls.certresolver=le"
     volumes:
       - ~/authkeys/id_rsa.pem:/Authentification/id_rsa.pem
       - ~/authkeys/id_rsa_pub.pem:/Authentification/id_rsa_pub.pem
@@ -83,7 +84,8 @@ services:
     labels:
     - "traefik.enable=true"
     - "traefik.http.routers.gesundheitswesen_fr.rule=Host(`gesundheitswesen.cyber-city.systems`)"
-    - "traefik.http.routers.gesundheitswesen_fr.entrypoints=http"
+    - "traefik.http.routers.gesundheitswesen_fr.entrypoints=https"
+    - "traefik.http.routers.gesundheitswesen_fr.tls.certresolver=le"
 
   gesundheitswesen_ba:
     image: "registry.digitalocean.com/cybercityregistry/gesundheitswesen_ba:latest"
@@ -119,7 +121,8 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.verkehr.rule=Host(`verkehr.cyber-city.systems`)"
-      - "traefik.http.routers.verkehr.entrypoints=http"
+      - "traefik.http.routers.verkehr.entrypoints=https"
+      - "traefik.http.routers.verkehr.tls.certresolver=le"
   
 
   rabbitmqsetup:
@@ -145,7 +148,8 @@ services:
      labels:
       - "traefik.enable=true"
       - "traefik.http.routers.landingpage.rule=Host(`cyber-city.systems`)"
-      - "traefik.http.routers.landingpage.entrypoints=http"
+      - "traefik.http.routers.landingpage.entrypoints=https"
+      - "traefik.http.routers.landingpage.tls.certresolver=le"
 
   landingpage_ba:
      image: "registry.digitalocean.com/cybercityregistry/landingpage_ba:latest"
@@ -157,7 +161,8 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.kultur.rule=Host(`kultur.cyber-city.systems`)"
-      - "traefik.http.routers.kultur.entrypoints=http"
+      - "traefik.http.routers.kultur.entrypoints=https"
+      - "traefik.http.routers.kultur.tls.certresolver=le"
 
   kultur_ba:
     image: "registry.digitalocean.com/cybercityregistry/kultur_ba:latest"
@@ -187,7 +192,8 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.unternehmensregister.rule=Host(`unternehmensregister.cyber-city.systems`)"
-      - "traefik.http.routers.unternehmensregister.entrypoints=http"
+      - "traefik.http.routers.unternehmensregister.entrypoints=https"
+      - "traefik.http.routers.unternehmensregister.tls.certresolver=le"
 
   unternehmensregister_ba:
     image: "registry.digitalocean.com/cybercityregistry/unternehmensregister_ba:latest"
