@@ -19,6 +19,7 @@ services:
       - "--certificatesresolvers.le.acme.storage=/acme.json"
       - "--certificatesresolvers.le.acme.httpchallenge.entrypoint=http"
       - "--certificatesresolvers.le.acme.httpchallenge=true"
+      - "--entrypoints.http.http.redirections.entryPoint.to=https"
     environment:
       - "NAMECOM_USERNAME=leonstue"
       - "NAMECOM_API_TOKEN=144a4a06be34f25e28d8c1786440e9e6fe2f6743"
