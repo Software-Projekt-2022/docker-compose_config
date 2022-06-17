@@ -35,10 +35,9 @@ services:
   whoami:
     image: containous/whoami
     labels:
-      - traefik.http.routers.https.rule=Host(`whoami.cyber-city.systems`)
-      - traefik.http.routers.https.entrypoints=https
-      - traefik.http.routers.https.tls=true
-      - traefik.http.routers.https.tls.certResolver=letsencrypt
+      - traefik.http.routers.whoami.rule=Host(`whoami.cyber-city.systems`)
+      - traefik.http.routers.whoami.entrypoints=https
+      - traefik.http.routers.whoami.tls.certResolver=le
 
   rabbitmq:
       image: "rabbitmq:3-management"
