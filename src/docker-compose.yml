@@ -172,7 +172,7 @@ services:
     image: "registry.digitalocean.com/cybercityregistry/kultur_ba:latest"
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.kultur_ba.rule=Host(`kultur.cyber-city.systems`) && Path(/api)"
+      - "traefik.http.routers.kultur_ba.rule=Host(`kultur.cyber-city.systems`) && Path(`/api`)"
       - "traefik.http.routers.kultur_ba.entrypoints=https"
       - "traefik.http.routers.kultur_ba.tls.certresolver=le"
   
