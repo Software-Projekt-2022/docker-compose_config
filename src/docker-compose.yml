@@ -37,7 +37,7 @@ services:
     image: containous/whoami
     labels:
       - "traefik.enable=true"
-      - traefik.http.routers.whoami.rule=Host(`whoami.cyber-city.systems`)
+      - traefik.http.routers.whoami.rule=Host(`whoami.cyber-city.systems`) && Path(`/api`)
       - traefik.http.routers.whoami.entrypoints=https
       - traefik.http.routers.whoami.tls.certresolver=le
 
@@ -97,7 +97,8 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.umwelt.rule=Host(`umwelt.cyber-city.systems`)"
-      - "traefik.http.routers.umwelt.entrypoints=http"
+      - "traefik.http.routers.whoami.entrypoints=https"
+      - "traefik.http.routers.whoami.tls.certresolver=le"
 
   verkehrdb:
     image: mariadb
