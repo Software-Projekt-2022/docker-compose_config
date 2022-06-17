@@ -38,7 +38,7 @@ services:
       - "traefik.enable=true"
       - traefik.http.routers.whoami.rule=Host(`whoami.cyber-city.systems`)
       - traefik.http.routers.whoami.entrypoints=https
-      - traefik.http.routers.whoami.tls.certResolver=le
+      - traefik.http.routers.whoami.tls.certresolver=le
 
   rabbitmq:
       image: "rabbitmq:3-management"
@@ -49,7 +49,6 @@ services:
         - "traefik.http.routers.rabbitmq.entrypoints=rabbitmqentry"
         - "traefik.http.services.rabbitmq.loadbalancer.server.port=15672"
         - "traefik.http.routers.rabbitmq.service=rabbitmq"
-        - "traefik.docker.network=traefik_default"
       volumes:
         - ~/rabbitmq/data/:/var/lib/rabbitmq/mnesia
         - ~/rabbitmq/log/:/var/log/rabbitmq/
@@ -89,8 +88,8 @@ services:
     image: "registry.digitalocean.com/cybercityregistry/gesundheitswesen_ba:latest"
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.umwelt.rule=Host(`api.gesund.cyber-city.systems`)"
-      - "traefik.http.routers.umwelt.entrypoints=http"
+      - "traefik.http.routers.gesundheitswesen_ba.rule=Host(`api.gesund.cyber-city.systems`)"
+      - "traefik.http.routers.gesundheitswesen_ba.entrypoints=http"
 
   umwelt:
     image: "registry.digitalocean.com/cybercityregistry/umwelt:latest"
