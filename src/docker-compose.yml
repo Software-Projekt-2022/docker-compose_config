@@ -15,11 +15,11 @@ services:
       - "--entrypoints.http.address=:80"
       - "--entrypoints.rabbitmqentry.address=:15672"
       - "--entrypoints.https.address=:443"
-      #- "--certificatesresolvers.letsencrypt.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory"
-      #- "--certificatesresolvers.le.acme.email=lstuempeley@fh-bielefeld.de"
-      #- "--certificatesresolvers.le.acme.storage=/acme.json"
-      #- "--certificatesresolvers.le.acme.tlschallange=true"
-      #- "--certificatesresolvers.le.acme.dnschallenge.providers=namedotcom"
+      - "--certificatesresolvers.letsencrypt.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory"
+      - "--certificatesresolvers.le.acme.email=lstuempeley@fh-bielefeld.de"
+      - "--certificatesresolvers.le.acme.storage=/acme.json"
+      - "--certificatesresolvers.le.acme.tlschallange=true"
+      - "--certificatesresolvers.le.acme.dnschallenge.providers=namedotcom"
     
     environment:
       - "NAMECOM_USERNAME=leonstue"
