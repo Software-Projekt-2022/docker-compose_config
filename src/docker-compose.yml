@@ -209,3 +209,9 @@ services:
       - "traefik.http.routers.unternehmensregister_ba.rule=Host(`unternehmensregister.cyber-city.systems`) && Path(`/api`)"
       - "traefik.http.routers.unternehmensregister_ba.entrypoints=https"
       - "traefik.http.routers.unternehmensregister_ba.tls.certresolver=le"
+    environment:
+      HOST: unternehmendb
+      PORT: 5401
+      DB: cjadmin
+      USER: cjadmin
+      PW: cc_cj#&#2022
