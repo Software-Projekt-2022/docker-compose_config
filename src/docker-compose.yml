@@ -206,6 +206,6 @@ services:
     image: "registry.digitalocean.com/cybercityregistry/unternehmensregister_ba:latest"
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.unternehmensregister_fr.rule=Host(`unternehmensregister.cyber-city.systems`) && Path(`/api`)"
-      - "traefik.http.routers.unternehmensregister_fr.entrypoints=https"
-      - "traefik.http.routers.unternehmensregister_fr.tls.certresolver=le"
+      - "traefik.http.routers.unternehmensregister_ba.rule=Host(`unternehmensregister.cyber-city.systems`) && Path(`/api`)"
+      - "traefik.http.routers.unternehmensregister_ba.entrypoints=https"
+      - "traefik.http.routers.unternehmensregister_ba.tls.certresolver=le"
