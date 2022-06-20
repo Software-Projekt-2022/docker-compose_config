@@ -15,7 +15,7 @@ services:
       - "--entrypoints.http.address=:80"
       - "--entrypoints.rabbitmqentry.address=:15672"
       - "--entrypoints.https.address=:443"
-      - "--entrypoints.udb.adress=:5401"
+      - "--entrypoints.udb.address=:5401"
       - "--certificatesresolvers.le.acme.email=lstuempeley@fh-bielefeld.de"
       - "--certificatesresolvers.le.acme.storage=/acme.json"
       - "--certificatesresolvers.le.acme.httpchallenge.entrypoint=http"
