@@ -144,7 +144,7 @@ services:
     command: -p 5401
     labels:
     - "traefik.enable=true"
-    - "traefik.tcp.routers.unternehmendb.rule=Host(`unternehmensregister.cyber-city.systems`)"
+    - "traefik.tcp.routers.unternehmendb.rule=HostSNI(`unternehmensregister.cyber-city.systems`)"
     - "traefik.tcp.routers.unternehmendb.entrypoints=udb"
 
   landingpage_fr:
