@@ -68,11 +68,11 @@ services:
     volumes:
       - ~/authkeys/id_rsa.pem:/Authentification/id_rsa.pem
       - ~/authkeys/id_rsa_pub.pem:/Authentification/id_rsa_pub.pem
-    restart: always
+    restart: on-failure
 
   authdb:
     image: mariadb
-    restart: always
+    restart: on-failure
     volumes:
         - ~/authdbinit/init.sql:/docker-entrypoint-initdb.d/init.sql
         - ~/authdb:/var/lib/mysql
@@ -114,11 +114,11 @@ services:
       - "traefik.http.routers.umwelt_ba.entrypoints=https"
       - "traefik.http.services.umwelt_ba.loadbalancer.server.port=8080"
       - "traefik.http.routers.umwelt_ba.tls.certresolver=le"
-    restart: always
+    restart: on-failure
 
   verkehrdb:
     image: mariadb
-    restart: always
+    restart: on-failure
     volumes:
         - ~/verkehr/init/init.sql:/docker-entrypoint-initdb.d/init.sql
         - ~/verkehr:/var/lib/mysql
@@ -143,6 +143,7 @@ services:
     image: "registry.digitalocean.com/cybercityregistry/rabbitmq-setup:latest"
     depends_on:
       - rabbitmq
+    restart: on-failure
 
   unternehmendb:
     image: postgres
