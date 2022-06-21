@@ -39,7 +39,7 @@ services:
     image: containous/whoami
     labels:
       - "traefik.enable=true"
-      - traefik.http.routers.whoami.rule=Host(`whoami.cyber-city.systems`) && Path(`/api`)
+      - traefik.http.routers.whoami.rule=Host(`whoami.cyber-city.systems`) && PathPrefix(`/api`)
       - traefik.http.routers.whoami.entrypoints=https
       - traefik.http.routers.whoami.tls.certresolver=le
 
@@ -93,7 +93,7 @@ services:
     image: "registry.digitalocean.com/cybercityregistry/gesundheitswesen_ba:latest"
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.gesundheitswesen_ba.rule=Host(`gesundheitswesen.cyber-city.systems`) && Path(`/api`)"
+      - "traefik.http.routers.gesundheitswesen_ba.rule=Host(`gesundheitswesen.cyber-city.systems`) && PathPrefix(`/api`)"
       - "traefik.http.routers.gesundheitswesen_ba.entrypoints=https"
       - "traefik.http.routers.gesundheitswesen_ba.tls.certresolver=le"
 
@@ -109,7 +109,7 @@ services:
     image: "registry.digitalocean.com/cybercityregistry/umwelt_ba:latest"
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.umwelt_ba.rule=Host(`umwelt.cyber-city.systems`)  && Path(`/api`)"
+      - "traefik.http.routers.umwelt_ba.rule=Host(`umwelt.cyber-city.systems`)  && PathPrefix(`/api`)"
       - "traefik.http.routers.umwelt_ba.entrypoints=https"
       - "traefik.http.services.umwelt_ba.loadbalancer.server.port=8080"
       - "traefik.http.routers.umwelt_ba.tls.certresolver=le"
@@ -173,7 +173,7 @@ services:
      image: "registry.digitalocean.com/cybercityregistry/landingpage_ba:latest"
      labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.landingpage_ba.rule=Host(`cyber-city.systems`) && Path(`/api`)"
+      - "traefik.http.routers.landingpage_ba.rule=Host(`cyber-city.systems`) && PathPrefix(`/api`)"
       - "traefik.http.routers.landingpage_ba.entrypoints=https"
       - "traefik.http.routers.landingpage_ba.tls.certresolver=le"
 
@@ -189,7 +189,7 @@ services:
     image: "registry.digitalocean.com/cybercityregistry/kultur_ba:latest"
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.kultur_ba.rule=Host(`kultur.cyber-city.systems`) && Path(`/api`)"
+      - "traefik.http.routers.kultur_ba.rule=Host(`kultur.cyber-city.systems`) && PathPrefix(`/api`)"
       - "traefik.http.routers.kultur_ba.entrypoints=https"
       - "traefik.http.routers.kultur_ba.tls.certresolver=le"
   
@@ -223,7 +223,7 @@ services:
     image: "registry.digitalocean.com/cybercityregistry/unternehmensregister_ba:latest"
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.unternehmensregister_ba.rule=Host(`unternehmensregister.cyber-city.systems`) && Path(`/api`)"
+      - "traefik.http.routers.unternehmensregister_ba.rule=Host(`unternehmensregister.cyber-city.systems`) && PathPrefix(`/api`)"
       - "traefik.http.routers.unternehmensregister_ba.entrypoints=https"
       - "traefik.http.routers.unternehmensregister_ba.tls.certresolver=le"
     environment:
