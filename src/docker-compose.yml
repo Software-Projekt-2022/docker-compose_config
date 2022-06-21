@@ -97,13 +97,21 @@ services:
       - "traefik.http.routers.gesundheitswesen_ba.entrypoints=https"
       - "traefik.http.routers.gesundheitswesen_ba.tls.certresolver=le"
 
-  umwelt:
-    image: "registry.digitalocean.com/cybercityregistry/umwelt:latest"
+  umwelt_fr:
+    image: "registry.digitalocean.com/cybercityregistry/umwelt_fr:latest"
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.umwelt.rule=Host(`umwelt.cyber-city.systems`)"
-      - "traefik.http.routers.umwelt.entrypoints=https"
-      - "traefik.http.routers.umwelt.tls.certresolver=le"
+      - "traefik.http.routers.umwelt_fr.rule=Host(`umwelt.cyber-city.systems`)"
+      - "traefik.http.routers.umwelt_fr.entrypoints=https"
+      - "traefik.http.routers.umwelt_fr.tls.certresolver=le"
+
+  umwelt_ba:
+    image: "registry.digitalocean.com/cybercityregistry/umwelt_ba:latest"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.umwelt_ba.rule=Host(`umwelt.cyber-city.systems`) && && Path(`/api`)"
+      - "traefik.http.routers.umwelt_ba.entrypoints=https"
+      - "traefik.http.routers.umwelt_ba.tls.certresolver=le"
 
   verkehrdb:
     image: mariadb
