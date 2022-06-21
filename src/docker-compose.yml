@@ -109,7 +109,7 @@ services:
     image: "registry.digitalocean.com/cybercityregistry/umwelt_ba:latest"
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.umwelt_ba.rule=Host(`umwelt.cyber-city.systems`) && && Path(`/api`)"
+      - "traefik.http.routers.umwelt_ba.rule=Host(`umwelt.cyber-city.systems`)  && Path(`/api`)"
       - "traefik.http.routers.umwelt_ba.entrypoints=https"
       - "traefik.http.routers.umwelt_ba.tls.certresolver=le"
     restart: always
