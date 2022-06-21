@@ -68,6 +68,7 @@ services:
     volumes:
       - ~/authkeys/id_rsa.pem:/Authentification/id_rsa.pem
       - ~/authkeys/id_rsa_pub.pem:/Authentification/id_rsa_pub.pem
+    restart: always
 
   authdb:
     image: mariadb
