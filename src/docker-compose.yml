@@ -44,20 +44,20 @@ services:
       - traefik.http.routers.whoami.tls.certresolver=le
 
   rabbitmq:
-      image: "rabbitmq:3-management"
-      container_name: "rabbitmq"
-      labels:
-        - "traefik.enable=true"
-        - "traefik.http.routers.rabbitmq.rule=Host(`cyber-city.systems`)"
-        - "traefik.http.routers.rabbitmq.entrypoints=rabbitmqentry"
-        - "traefik.http.services.rabbitmq.loadbalancer.server.port=15672"
-        - "traefik.http.routers.rabbitmq.service=rabbitmq"
-      volumes:
-        - ~/rabbitmq/data/:/var/lib/rabbitmq/mnesia
-        - ~/rabbitmq/log/:/var/log/rabbitmq/
-        - ~/rabbitmqsetup/rabbitmq.json:/etc/rabbitmq/definitions.json
-        - ~/rabbitmqsetup/rabbitmq.config:/etc/rabbitmq/rabbitmq.config
-  
+    image: "rabbitmq:3-management"
+    container_name: "rabbitmq"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.rabbitmq.rule=Host(`cyber-city.systems`)"
+      - "traefik.http.routers.rabbitmq.entrypoints=rabbitmqentry"
+      - "traefik.http.services.rabbitmq.loadbalancer.server.port=15672"
+      - "traefik.http.routers.rabbitmq.service=rabbitmq"
+    volumes:
+      - ~/rabbitmq/data/:/var/lib/rabbitmq/mnesia
+      - ~/rabbitmq/log/:/var/log/rabbitmq/
+      - ~/rabbitmqsetup/rabbitmq.json:/etc/rabbitmq/definitions.json
+      - ~/rabbitmqsetup/rabbitmq.config:/etc/rabbitmq/rabbitmq.config
+
   authentifizierung:
     image: "registry.digitalocean.com/cybercityregistry/authentifizierung:latest"
     labels:
@@ -89,6 +89,7 @@ services:
     - "traefik.http.routers.gesundheitswesen_fr.rule=Host(`gesundheitswesen.cyber-city.systems`)"
     - "traefik.http.routers.gesundheitswesen_fr.entrypoints=https"
     - "traefik.http.routers.gesundheitswesen_fr.tls.certresolver=le"
+    restart: on-failure
 
   gesundheitswesen_ba:
     image: "registry.digitalocean.com/cybercityregistry/gesundheitswesen_ba:latest"
@@ -97,6 +98,7 @@ services:
       - "traefik.http.routers.gesundheitswesen_ba.rule=Host(`gesundheitswesen.cyber-city.systems`) && PathPrefix(`/api`)"
       - "traefik.http.routers.gesundheitswesen_ba.entrypoints=https"
       - "traefik.http.routers.gesundheitswesen_ba.tls.certresolver=le"
+    restart: on-failure
 
   umwelt_fr:
     image: "registry.digitalocean.com/cybercityregistry/umwelt_fr:latest"
@@ -105,6 +107,7 @@ services:
       - "traefik.http.routers.umwelt_fr.rule=Host(`umwelt.cyber-city.systems`)"
       - "traefik.http.routers.umwelt_fr.entrypoints=https"
       - "traefik.http.routers.umwelt_fr.tls.certresolver=le"
+    restart: on-failure
 
   umwelt_ba:
     image: "registry.digitalocean.com/cybercityregistry/umwelt_ba:latest"
@@ -129,6 +132,7 @@ services:
       MARIADB_DATABASE: verkehr
     
   verkehr:
+    restart: on-failure
     depends_on: 
       - verkehrdb
     image: "registry.digitalocean.com/cybercityregistry/verkehr:latest"
@@ -147,7 +151,6 @@ services:
 
   unternehmendb:
     image: postgres
-    restart: always
     environment:
       POSTGRES_PASSWORD: cc_cj#&#2022
       POSTGRES_USER: cjadmin
@@ -160,26 +163,30 @@ services:
     - "traefik.tcp.services.unternehmendb.loadbalancer.server.port=5401"
     - "traefik.tcp.routers.unternehmendb.rule=HostSNI(`*`)"
     - "traefik.tcp.routers.unternehmendb.entrypoints=udb"
+    restart: on-failure
 
   landingpage_fr:
-     image: "registry.digitalocean.com/cybercityregistry/landingpage_fr:latest"
-     depends_on: 
-       - landingpage_ba
-     labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.landingpage_fr.rule=Host(`cyber-city.systems`)"
-      - "traefik.http.routers.landingpage_fr.entrypoints=https"
-      - "traefik.http.routers.landingpage_fr.tls.certresolver=le"
+    image: "registry.digitalocean.com/cybercityregistry/landingpage_fr:latest"
+    depends_on: 
+      - landingpage_ba
+    labels:
+     - "traefik.enable=true"
+     - "traefik.http.routers.landingpage_fr.rule=Host(`cyber-city.systems`)"
+     - "traefik.http.routers.landingpage_fr.entrypoints=https"
+     - "traefik.http.routers.landingpage_fr.tls.certresolver=le"
+    restart: on-failure
 
   landingpage_ba:
-     image: "registry.digitalocean.com/cybercityregistry/landingpage_ba:latest"
-     labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.landingpage_ba.rule=Host(`cyber-city.systems`) && PathPrefix(`/api`)"
-      - "traefik.http.routers.landingpage_ba.entrypoints=https"
-      - "traefik.http.routers.landingpage_ba.tls.certresolver=le"
+    image: "registry.digitalocean.com/cybercityregistry/landingpage_ba:latest"
+    labels:
+     - "traefik.enable=true"
+     - "traefik.http.routers.landingpage_ba.rule=Host(`cyber-city.systems`) && PathPrefix(`/api`)"
+     - "traefik.http.routers.landingpage_ba.entrypoints=https"
+     - "traefik.http.routers.landingpage_ba.tls.certresolver=le"
+    restart: on-failure
 
   kultur_fr:
+    restart: on-failure
     image: "registry.digitalocean.com/cybercityregistry/kultur_fr:latest"
     labels:
       - "traefik.enable=true"
@@ -188,6 +195,7 @@ services:
       - "traefik.http.routers.kultur_fr.tls.certresolver=le"
 
   kultur_ba:
+    restart: on-failure
     image: "registry.digitalocean.com/cybercityregistry/kultur_ba:latest"
     labels:
       - "traefik.enable=true"
@@ -197,7 +205,7 @@ services:
   
   kulturdb:
     image: postgres
-    restart: always
+    restart: on-failure
     environment:
       POSTGRES_PASSWORD: kulturdbpw12345
       POSTGRES_USER: kulturdbuser
@@ -207,7 +215,7 @@ services:
 
   gesunddb:
     image: mongo
-    restart: always
+    restart: on-failure
     command: mongod --port 7777
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
@@ -215,6 +223,7 @@ services:
   
   unternehmensregister_fr:
     image: "registry.digitalocean.com/cybercityregistry/unternehmensregister_fr:latest"
+    restart: on-failure
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.unternehmensregister_fr.rule=Host(`unternehmensregister.cyber-city.systems`)"
@@ -234,3 +243,4 @@ services:
       DB: cjadmin
       USER: cjadmin
       PW: cc_cj#&#2022
+    restart: on-failure
