@@ -111,6 +111,7 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.umwelt_ba.rule=Host(`umwelt.cyber-city.systems`)  && Path(`/api`)"
       - "traefik.http.routers.umwelt_ba.entrypoints=https"
+      - "traefik.http.services.umwelt_ba.loadbalancer.server.port=8080"
       - "traefik.http.routers.umwelt_ba.tls.certresolver=le"
     restart: always
 
