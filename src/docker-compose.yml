@@ -243,4 +243,9 @@ services:
       DB: cjadmin
       USER: cjadmin
       PW: 'cc_cj#&#2022'
+      CJ_HOST: unternehmendb
+      CJ_PORT: 5401
+      CJ_DB: cjadmin
+      CJ_USER: cjadmin
+      CJ_PW: 'cc_cj#&#2022'
     restart: on-failure
