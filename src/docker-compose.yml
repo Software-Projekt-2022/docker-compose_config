@@ -238,12 +238,7 @@ services:
       - "traefik.http.routers.unternehmensregister_ba.entrypoints=https"
       - "traefik.http.routers.unternehmensregister_ba.tls.certresolver=le"
     environment:
-      CJ_HOST: cyber-city.systems
-      CJ_PORT: 5401
-      CJ_DB: cjadmin
-      CJ_USER: cjadmin
-      CJ_PW: 'cc_cj#&#2022'
-      HOST: cyber-city.systems
+      HOST: unternehmendb
       PORT: 5401
       DB: cjadmin
       USER: cjadmin
