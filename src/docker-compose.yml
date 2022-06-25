@@ -243,4 +243,9 @@ services:
       CJ_DB: cjadmin
       CJ_USER: cjadmin
       CJ_PW: 'cc_cj#&#2022'
+      HOST: cyber-city.systems
+      PORT: 5401
+      DB: cjadmin
+      USER: cjadmin
+      PW: 'cc_cj#&#2022'
     restart: on-failure
