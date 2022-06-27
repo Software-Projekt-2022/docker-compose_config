@@ -47,6 +47,7 @@ jobs:
           passphrase: ${{ secrets.SSH_PASSPHRASE }}
           key: ${{ secrets.SSH_KEY}}
           script: |
+            echo ${{ secrets.SSH_HOST }}
             cd ~/docker
             docker-compose pull
             docker-compose up -d --force-recreate --remove-orphans
