@@ -235,6 +235,8 @@ services:
       - "traefik.http.routers.unternehmensregister_fr.rule=Host(`unternehmensregister.cyber-city.systems`)"
       - "traefik.http.routers.unternehmensregister_fr.entrypoints=https"
       - "traefik.http.routers.unternehmensregister_fr.tls.certresolver=le"
+    volumes:
+      - ~/unternehmenfrenv/env:/CyberJobsWebsite/env
 
   unternehmensregister_ba:
     image: "registry.digitalocean.com/cybercityregistry/unternehmensregister_ba:latest"
