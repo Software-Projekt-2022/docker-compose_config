@@ -203,11 +203,11 @@ services:
       - "traefik.http.routers.kultur_ba.entrypoints=https"
       - "traefik.http.routers.kultur_ba.tls.certresolver=le"
     environment:
-      - HOST: kulturdb
-      - PORT: 5432
-      - DB: kulturdbuser
-      - USER: kulturdbuser
-      - PW: kulturdbpw12345
+      HOST: kulturdb
+      PORT: 5432
+      DB: kulturdbuser
+      USER: kulturdbuser
+      PW: kulturdbpw12345
 
   kulturdb:
     image: postgres
