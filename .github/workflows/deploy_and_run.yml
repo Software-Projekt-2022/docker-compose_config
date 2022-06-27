@@ -49,4 +49,4 @@ jobs:
           script: |
             cd ~/docker
             docker-compose pull
-            docker-compose up -d --force-recreate
+            docker-compose up -d --force-recreate --remove-orphans
