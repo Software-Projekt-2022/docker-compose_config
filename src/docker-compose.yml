@@ -168,7 +168,7 @@ services:
   landingpagefr:
     image: "registry.digitalocean.com/cybercityregistry/landingpage_fr:latest"
     depends_on: 
-      - landingpage_ba
+      - landingpageba
     labels:
      - "traefik.enable=true"
      - "traefik.http.routers.landingpage_fr.rule=Host(`cyber-city.systems`)"
