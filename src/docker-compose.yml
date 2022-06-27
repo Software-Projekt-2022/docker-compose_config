@@ -82,7 +82,7 @@ services:
       MARIADB_USER: auth
       MARIADB_DATABASE: auth
 
-  gesundheitswesen_fr:
+  gesundheitswesenfr:
     image: "registry.digitalocean.com/cybercityregistry/gesundheitswesen_fr:latest"
     labels:
     - "traefik.enable=true"
@@ -91,7 +91,7 @@ services:
     - "traefik.http.routers.gesundheitswesen_fr.tls.certresolver=le"
     restart: on-failure
 
-  gesundheitswesen_ba:
+  gesundheitswesenba:
     image: "registry.digitalocean.com/cybercityregistry/gesundheitswesen_ba:latest"
     labels:
       - "traefik.enable=true"
@@ -100,7 +100,7 @@ services:
       - "traefik.http.routers.gesundheitswesen_ba.tls.certresolver=le"
     restart: on-failure
 
-  umwelt_fr:
+  umweltfr:
     image: "registry.digitalocean.com/cybercityregistry/umwelt_fr:latest"
     labels:
       - "traefik.enable=true"
@@ -109,7 +109,7 @@ services:
       - "traefik.http.routers.umwelt_fr.tls.certresolver=le"
     restart: on-failure
 
-  umwelt_ba:
+  umweltba:
     image: "registry.digitalocean.com/cybercityregistry/umwelt_ba:latest"
     labels:
       - "traefik.enable=true"
@@ -165,7 +165,7 @@ services:
     - "traefik.tcp.routers.unternehmendb.entrypoints=udb"
     restart: on-failure
 
-  landingpage_fr:
+  landingpagefr:
     image: "registry.digitalocean.com/cybercityregistry/landingpage_fr:latest"
     depends_on: 
       - landingpage_ba
@@ -176,7 +176,7 @@ services:
      - "traefik.http.routers.landingpage_fr.tls.certresolver=le"
     restart: on-failure
 
-  landingpage_ba:
+  landingpageba:
     image: "registry.digitalocean.com/cybercityregistry/landingpage_ba:latest"
     labels:
      - "traefik.enable=true"
@@ -185,7 +185,7 @@ services:
      - "traefik.http.routers.landingpage_ba.tls.certresolver=le"
     restart: on-failure
 
-  kultur_fr:
+  kulturfr:
     restart: on-failure
     image: "registry.digitalocean.com/cybercityregistry/kultur_fr:latest"
     labels:
@@ -195,7 +195,7 @@ services:
       - "traefik.http.routers.kultur_fr.tls.certresolver=le"
       - "traefik.http.services.kultur_fr.loadbalancer.server.port=80"
 
-  kultur_ba:
+  kulturba:
     restart: on-failure
     image: "registry.digitalocean.com/cybercityregistry/kultur_ba:latest"
     labels:
@@ -228,7 +228,7 @@ services:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: example
   
-  unternehmensregister_fr:
+  unternehmensregisterfr:
     image: "registry.digitalocean.com/cybercityregistry/unternehmensregister_fr:latest"
     restart: on-failure
     labels:
