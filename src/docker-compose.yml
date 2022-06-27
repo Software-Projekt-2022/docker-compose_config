@@ -193,6 +193,7 @@ services:
       - "traefik.http.routers.kultur_fr.rule=Host(`kultur.cyber-city.systems`)"
       - "traefik.http.routers.kultur_fr.entrypoints=https"
       - "traefik.http.routers.kultur_fr.tls.certresolver=le"
+      - "traefik.http.services.kultur_fr.loadbalancer.server.port=8080"
 
   kultur_ba:
     restart: on-failure
