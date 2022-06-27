@@ -203,6 +203,7 @@ services:
       - "traefik.http.routers.kultur_ba.rule=Host(`kultur.cyber-city.systems`) && PathPrefix(`/api`)"
       - "traefik.http.routers.kultur_ba.entrypoints=https"
       - "traefik.http.routers.kultur_ba.tls.certresolver=le"
+      - "traefik.http.services.kultur_ba.loadbalancer.server.port=8080"
     environment:
       HOST: kulturdb
       PORT: 5432
