@@ -239,7 +239,7 @@ services:
     volumes:
       - ~/unternehmenfrenv/env:/CyberJobsWebsite/env
 
-  unternehmensregister_ba:
+  unternehmensregisterba:
     image: "registry.digitalocean.com/cybercityregistry/unternehmensregister_ba:latest"
     labels:
       - "traefik.enable=true"
